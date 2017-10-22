@@ -11,20 +11,20 @@ import org.adridadou.ethereum.propeller.values.EthAddress;
 
 
 public class tester {
-    public interface Testcontract {
+	public interface Testcontract {
 		//CompletableFuture<String> symbol();
 		String symbol();
 		BigInteger balanceOf(EthAddress addr);
 		CompletableFuture<Boolean> transfer(EthAddress addrTo, Integer value);
-    }
+	}
 	public static void main( String[] args )
     {
 		System.out.println("bgin test");
-    	EthereumFacade aEthereumFacade = RpcEthereumFacadeProvider.forRemoteNode("<my geth rpc server>", RpcEthereumFacadeProvider.MAIN_CHAIN_ID);
-    	BigInteger privkey = new BigInteger("<my private key>", 16);
+    	EthereumFacade aEthereumFacade = RpcEthereumFacadeProvider.forRemoteNode("http://47.92.80.131:8545", RpcEthereumFacadeProvider.MAIN_CHAIN_ID);
+    	BigInteger privkey = new BigInteger("2c2b70a8aeeec18a7ad460fc63ba54ff6be6b5d4d05a0bd20904fa2d63de0675", 16);
     	EthAccount account = AccountProvider.fromPrivateKey(privkey);
     	EthAddress contractAddr = EthAddress.of("0x73187be2c94f645175da8b60b43813d7a25f353b");
-	    EthAbi abi = EthAbi.of("[\r\n" + 
+		EthAbi abi = EthAbi.of("[\r\n" + 
 				"    {\r\n" + 
 				"        \"constant\": true,\r\n" + 
 				"        \"inputs\": [],\r\n" + 
@@ -104,11 +104,11 @@ public class tester {
 				"        \"type\": \"event\"\r\n" + 
 				"    }\r\n" + 
 				"]");
-        Testcontract testcontract = aEthereumFacade.createContractProxy(abi, contractAddr, account, Testcontract.class);
+		Testcontract testcontract = aEthereumFacade.createContractProxy(abi, contractAddr, account, Testcontract.class);
 		
 		
-		    //aEthereumFacade.sendEther(account, EthAddress.of("0x1700cf2065384f4bac620a608ac3eb7f8b47b950"))
-	    String symbol = testcontract.symbol();
+		//aEthereumFacade.sendEther(account, EthAddress.of("0x1700cf2065384f4bac620a608ac3eb7f8b47b950"))
+		String symbol = testcontract.symbol();
 		System.out.println(symbol);
 		CompletableFuture<Boolean> ret = testcontract.transfer(EthAddress.of("0x1700cf2065384f4bac620a608ac3eb7f8b47b950"),new Integer(1001));
 		ret.thenRun(() -> System.out.println("hello world"));

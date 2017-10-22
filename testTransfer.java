@@ -16,7 +16,7 @@ public class tester {
 		String symbol();
 		BigInteger balanceOf(EthAddress addr);
 		CompletableFuture<Boolean> transfer(EthAddress addrTo, Integer value);
-	}
+    }
 	public static void main( String[] args )
     {
 		System.out.println("bgin test");

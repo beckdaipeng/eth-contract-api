@@ -18,12 +18,12 @@ public class tester {
 		CompletableFuture<Boolean> transfer(EthAddress addrTo, Integer value);
 	}
 	public static void main( String[] args )
-    {
+    	{
 		System.out.println("bgin test");
-    	EthereumFacade aEthereumFacade = RpcEthereumFacadeProvider.forRemoteNode("http://47.92.80.131:8545", RpcEthereumFacadeProvider.MAIN_CHAIN_ID);
-    	BigInteger privkey = new BigInteger("2c2b70a8aeeec18a7ad460fc63ba54ff6be6b5d4d05a0bd20904fa2d63de0675", 16);
-    	EthAccount account = AccountProvider.fromPrivateKey(privkey);
-    	EthAddress contractAddr = EthAddress.of("0x73187be2c94f645175da8b60b43813d7a25f353b");
+    		EthereumFacade aEthereumFacade = RpcEthereumFacadeProvider.forRemoteNode("<my geth>", RpcEthereumFacadeProvider.MAIN_CHAIN_ID);
+    		BigInteger privkey = new BigInteger("<my private key>", 16);
+    		EthAccount account = AccountProvider.fromPrivateKey(privkey);
+    		EthAddress contractAddr = EthAddress.of("0x73187be2c94f645175da8b60b43813d7a25f353b");
 		EthAbi abi = EthAbi.of("[\r\n" + 
 				"    {\r\n" + 
 				"        \"constant\": true,\r\n" + 
